@@ -1,74 +1,54 @@
-// src/screens/HomeScreen.js
-import React, { useState } from 'react';
-import { View, Text, TextInput, Button, StyleSheet, Alert } from 'react-native';
-
-const HomeScreen = ({ navigation }) => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-
-  const handleLogin = () => {
-    // Placeholder login logic
-    if (email === 'test@example.com' && password === 'password123') {
-      Alert.alert('Login Successful', 'Welcome!');
-      // Navigate to another screen if needed
-      // navigation.navigate('Home');
-    } else {
-      Alert.alert('Login Failed', 'Invalid email or password');
-    }
-  };
-
-  const handleResetWithPhone = () => {
-    navigation.navigate('ResetPasswordWithPhone')
-  };
-  const handleResetWithEmail = () => {
-    navigation.navigate('ResetPasswordWithEmail')
-  };
-
-  return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Login</Text>
-      <TextInput
-        style={styles.input}
-        placeholder="Email"
-        value={email}
-        onChangeText={setEmail}
-        keyboardType="email-address"
-        autoCapitalize="none"
-      />
-      <TextInput
-        style={styles.input}
-        placeholder="Password"
-        value={password}
-        onChangeText={setPassword}
-        secureTextEntry
-        autoCapitalize="none"
-      />
-      <Button title="Login" onPress={handleLogin} />
-      <Button title="Reset Password with phone number" onPress={handleResetWithPhone} />
-      <Button title="Reset Password with email" onPress={handleResetWithEmail} />
-    </View>
-  );
-};
+import React from 'react';
+import { View, Text,Image, StyleSheet,TouchableOpacity } from 'react-native';
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    paddingHorizontal: 16,
-  },
-  title: {
-    fontSize: 24,
-    marginBottom: 16,
-    textAlign: 'center',
-  },
-  input: {
-    height: 40,
-    borderColor: '#ccc',
-    borderWidth: 1,
-    marginBottom: 12,
-    paddingHorizontal: 8,
-    borderRadius: 4,
+    container: {
+        paddingTop:50,
+    },
+    title:{
+      marginTop: 0,
+      marginLeft: 0,
+      paddingVertical: 8,
+      borderWidth: 2,
+      borderColor: '#20232a',
+      borderRadius: 6,
+      backgroundColor: '#61dafb',
+      color: '#20232a',
+      textAlign: 'center',
+      fontSize: 12,
+      fontWeight: 'bold',
+    },
+    profile:{
+        width:100,
+        height:100,
+    },
+    absoluteView: {
+      flex: 1,
+      marginTop: 650,
+      marginLeft: 325,
+      position: 'absolute',
+      alignItems: 'center',
+      justifyContent: 'center',
+      backgroundColor: 'transparent'
   },
 });
-
-export default HomeScreen;
+const HomeScreen = () => {
+    return (
+      // <View style={styles.container}>
+    //     <Image
+    //       style={styles.profile}
+    //       source={require('./assets/profilepic.png')}
+    //     />
+    //     <Text style={styles.title}>Profile</Text>
+    //   </View>
+    // );
+    <TouchableOpacity style={styles.profile}>
+        <View style={styles.absoluteView}>
+            <Text style={styles.title}>Profile</Text>
+            <Image source={require('./assets/profilepic.png')}  style={styles.profile}/>
+        </View>
+        {/* <Image source={require('./assets/profilepic.png')}  style={styles.profile}/> */}
+    </TouchableOpacity>
+    );
+  };
+export default HomeScreen
